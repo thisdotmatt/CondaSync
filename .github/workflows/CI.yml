@@ -9,10 +9,25 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      
       - uses: actions/setup-node@v4
         with:
           node-version: 20
+      
       - run: npm ci
+      
+      # Bump version number
+      - name: Bump version and push tag
+        id: bump_version
+        uses: anothrNick/github-tag-action@v1.36.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          # You can customize this if needed
+          tag_prefix: ""
+          release_branches: main
+          default_bump: patch  # Can be 'major', 'minor', or 'patch'
+      
+      # Publish to Visual Studio Marketplace
       - name: Publish to Visual Studio Marketplace
         uses: HaaLeo/publish-vscode-extension@v1
         with:
