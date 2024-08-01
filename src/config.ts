@@ -11,6 +11,7 @@ export function getEnvironmentPath(): string | undefined {return environment_pat
 export function getYmlPath(): string | undefined {return yml_path;}
 export function getYmlName(): string | undefined {return yml_name;}
 export function isVerbose(): boolean | undefined {return verbose;}
+
 export let configListener = vscode.workspace.onDidChangeConfiguration(async (event) => {
     if (event.affectsConfiguration('condasync.Environment Path') || event.affectsConfiguration('condasync.YML File Path') || 
         event.affectsConfiguration('condasync.YML File Name') || event.affectsConfiguration('condasync.Verbose')) {
@@ -20,6 +21,8 @@ export let configListener = vscode.workspace.onDidChangeConfiguration(async (eve
         yml_path = config.get<string>('YML File Path');
         yml_name = config.get<string>('YML File Name');
         verbose = config.get<boolean>('Verbose');
+
+        vscode.window.showInformationMessage(`Settings changed: ${environment_path} ${yml_path} ${yml_name} ${verbose}`);
         
         if (environment_path && yml_path && yml_name) { // update after settings change
             const new_env_content = await exportEnv(environment_path);

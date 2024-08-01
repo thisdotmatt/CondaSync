@@ -14,7 +14,7 @@ export async function activate(context: vscode.ExtensionContext) {
     let environment_path = getEnvironmentPath()
 
     context.subscriptions.push(disposable);
-   context.subscriptions.push(config_listener);
+    context.subscriptions.push(config_listener);
 
     if (environment_path) { 
         await watchEnv(environment_path);
