@@ -9,7 +9,7 @@ const options = {
     ignoreInitial: true,
     depth: 1,
     ignorePermissionErrors: true,
-    usePolling: true,
+    usePolling: false,
     interval: POLLING_INTERVAL,
     ignored: '^(?!.*(history|__pycache__)).*$',
 };
