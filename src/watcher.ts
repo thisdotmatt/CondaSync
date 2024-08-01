@@ -29,6 +29,7 @@ export async function watchEnv(env_path: string) {
     watcher
         .on('addDir', async (file_path) => {
             try {
+                vscode.window.showInformationMessage(`File Added: ${file_path}`);
                 const output = await exportEnv(env_path);
                 await updateEnv(output);
             } catch (error) {
@@ -37,6 +38,7 @@ export async function watchEnv(env_path: string) {
         })
         .on('unlinkDir', async (file_path) => {
             try {
+                vscode.window.showInformationMessage(`File Removed: ${file_path}`);
                 const output = await exportEnv(env_path);
                 await updateEnv(output);
             } catch (error) {
