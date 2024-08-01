@@ -24,16 +24,15 @@ jobs:
           node-version: 20
       
       - run: npm ci
-      
-      - name: Bump version and push tag
-        uses: anothrNick/github-tag-action@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          WITH_V: true
-          PRERELEASE: true
-          VERBOSE: true
-          GIT_API_TAGGING: true
-      
+
+      # Bump the version
+      - name: Bump version
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          npm version patch
+          git push --follow-tags
+
       - name: Publish to Visual Studio Marketplace
         uses: HaaLeo/publish-vscode-extension@v1
         with:
