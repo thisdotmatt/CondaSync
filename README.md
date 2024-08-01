@@ -1,4 +1,4 @@
-# CondaSync
+# CondaSync (in Production)
 > Automatic Dependency Tracker
 
 Most package managers, such as npm and yarn, update your dependency files the moment you make any changes to your environment. Conda (surprisingly) **does not**. Existing solutions require you to manually update your dependency list, which is tedious and prone to errors. 
