@@ -70,7 +70,6 @@ export async function updateEnv(updated_content: string) {
 export async function exportEnv(env_path: string): Promise<string> {
     try {
         const { stdout, stderr } = await executeCommand(`conda env export --prefix ${env_path}`);
-        vscode.window.showErrorMessage(`R: ${stdout}`);
         if (stderr) {
             vscode.window.showErrorMessage(`CondaSync: Error exporting conda environment: ${stderr}`);
             throw new Error(stderr);
