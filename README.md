@@ -11,7 +11,7 @@ CondaSync is a simple Visual Studio Code Extension that integrates directly into
 - Customize your dependency files in the settings
 
 ### Usage
-Ensure you have the latest versions of [VSCode](https://code.visualstudio.com/) and [conda](https://docs.conda.io/en/latest/) installed.
+Ensure you have the latest versions of [VSCode](https://code.visualstudio.com/) and [conda](https://docs.conda.io/en/latest/) installed, and have the Extension enabled in the `Extensions` sidebar.
 
 1. Open a Python project of your choice
 2. Enter the VSCode command line using <kbd>Control</kbd>+ <kbd>Shift</kbd> + <kbd>P</kbd>
