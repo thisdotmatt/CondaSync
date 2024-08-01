@@ -1,14 +1,21 @@
-# CondaSync - Automatic Dependency Tracker
+# CondaSync
+> Automatic Dependency Tracker
 
 Most package managers, such as npm and yarn, update your dependency files the moment you make any changes to your environment. Conda (surprisingly) **does not**. Existing solutions require you to manually update your dependency list, which is tedious and prone to errors. 
 <br><br>
-CondaSync is a simple VSCode Extension that integrates directly into your environment and silently does the boring work for you.
+CondaSync is a simple Visual Studio Code Extension that integrates directly into your environment and does the boring work for you.
+
+### Features
+- Track a conda environment through its entire life cycle with one command
+- Automatically update your `environment.yml` (or similar) file
+- Customize your dependency files in the settings
 
 ### Usage
+Ensure you have the latest versions of [VSCode](https://code.visualstudio.com/) and [conda](https://docs.conda.io/en/latest/) installed.
 
 1. Open a Python project of your choice
 2. Enter the VSCode command line using <kbd>Control</kbd>+ <kbd>Shift</kbd> + <kbd>P</kbd>
-3. Type the `Set Conda Environment` command and enter the name of your conda environment (e.g. my_env)
+3. Use the `Set Conda Environment` command and enter the name of your conda environment (e.g. my_env)
 4. Stop customizing your IDE and start coding
 
 ### Contributing
