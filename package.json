@@ -1,0 +1,74 @@
+{
+  "name": "condasync",
+  "displayName": "CondaSync",
+  "publisher": "thisdotmatt",
+  "description": "Utility for automatically updating conda dependencies",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.91.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "main": "./out/extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "configuration": [
+      {
+        "title": "CondaSync",
+        "properties": {
+          "condasync.Environment Path": {
+            "type": "string",
+            "default": "",
+            "description": "Name of environment to sync"
+          },
+          "condasync.YML File Path": {
+            "type": "string",
+            "default": ".",
+            "description": "Path to directory containing environment file"
+          },
+          "condasync.YML File Name": {
+            "type": "string",
+            "default": "environment.yml",
+            "description": "Name of environment file"
+          },
+          "condasync.Verbose": {
+            "type": "boolean",
+            "default": false,
+            "description": "Verbosity/frequency of messages"
+          }
+        }
+      }
+    ],
+    "commands": [
+      {
+        "command": "setCondaEnv",
+        "title": "Set Conda Environment"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.7",
+    "@types/node": "20.x",
+    "@types/vscode": "^1.91.0",
+    "@typescript-eslint/eslint-plugin": "^7.14.1",
+    "@typescript-eslint/parser": "^7.11.0",
+    "@vscode/test-cli": "^0.0.9",
+    "@vscode/test-electron": "^2.4.0",
+    "eslint": "^8.57.0",
+    "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "chokidar": "^3.6.0"
+  }
+}
