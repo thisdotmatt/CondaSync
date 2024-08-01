@@ -31,7 +31,7 @@ jobs:
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
           npm version patch
-          git push --follow-tags
+          git push origin HEAD:main --follow-tags
 
       - name: Publish to Visual Studio Marketplace
         uses: HaaLeo/publish-vscode-extension@v1
