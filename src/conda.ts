@@ -59,9 +59,10 @@ export async function updateEnv(updated_content: string) {
     try {
         const current_content = await fs.promises.readFile(yml_path, 'utf8');
         if (current_content.trim() !== updated_content.trim()) {
+            vscode.window.showInformationMessage(`CondaSync: Updating ${yml_name}`);
             await fs.promises.writeFile(yml_path, updated_content, 'utf8');
         } else {
-            //vscode.window.showInformationMessage(`CondaSync: ${yml_name} is already up to date`);
+            vscode.window.showInformationMessage(`CondaSync: ${yml_name} is already up to date`);
         }
     } catch (error: any) {
         vscode.window.showErrorMessage(`CondaSync: Error updating ${yml_name}: ${error.message}`);
