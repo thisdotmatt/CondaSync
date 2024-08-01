@@ -37,7 +37,6 @@ export async function watchEnv(env_path: string) {
         })
         .on('unlinkDir', async (file_path) => {
             try {
-                vscode.window.showInformationMessage(`Yert: ${file_path}`);
                 const output = await exportEnv(env_path);
                 await updateEnv(output);
             } catch (error) {
