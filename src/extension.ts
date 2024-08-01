@@ -12,6 +12,7 @@ export async function activate(context: vscode.ExtensionContext) {
     const disposable = vscode.commands.registerCommand('setCondaEnv', setCondaEnv);
     let config_listener = configListener; // Register the listener for configuration changes
     let environment_path = getEnvironmentPath()
+    vscode.window.showInformationMessage(`CondaSync: env path ${environment_path}`);
 
     context.subscriptions.push(disposable);
     context.subscriptions.push(config_listener);
