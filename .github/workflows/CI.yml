@@ -1,14 +1,23 @@
+name: Deploy Extension
+
 on:
-  push:
+  pull_request:
+    types:
+      - closed
     branches:
       - main
 
-name: Deploy Extension
 jobs:
   deploy:
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.merge_commit_sha }}
+          fetch-depth: '0'
       
       - uses: actions/setup-node@v4
         with:
@@ -16,18 +25,13 @@ jobs:
       
       - run: npm ci
       
-      # Bump version number
       - name: Bump version and push tag
-        id: bump_version
-        uses: anothrNick/github-tag-action@v1.36.0
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          # You can customize this if needed
-          tag_prefix: ""
-          release_branches: main
-          default_bump: patch  # Can be 'major', 'minor', or 'patch'
+        uses: anothrNick/github-tag-action@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          WITH_V: false
+          PRERELEASE: true
       
-      # Publish to Visual Studio Marketplace
       - name: Publish to Visual Studio Marketplace
         uses: HaaLeo/publish-vscode-extension@v1
         with:
