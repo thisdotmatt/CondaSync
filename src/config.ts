@@ -1,7 +1,7 @@
 import * as vscode from 'vscode';
 import { exportEnv, updateEnv } from './conda';
 
-const config = vscode.workspace.getConfiguration('condasync');
+const config = vscode.workspace.getConfiguration('condasync', vscode.Uri.file('.'));   
 let environment_path: string | undefined = config.get<string>('Environment Path');;
 let yml_path: string | undefined = config.get<string>('YML File Path');;
 let yml_name: string | undefined = config.get<string>('YML File Name');;
