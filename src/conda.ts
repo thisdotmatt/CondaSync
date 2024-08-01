@@ -50,6 +50,7 @@ export async function updateEnv(updated_content: string) {
     const config = vscode.workspace.getConfiguration('condasync');
     let base_folder = config.get<string>('YML File Path');
     let yml_name = config.get<string>('YML File Name');
+    vscode.window.showErrorMessage(`Initiated Conda Update: ${base_folder}, ${yml_name}`);
 
     if (!yml_name || !base_folder) return; //ensure the inputs are defined
     let yml_path = await findYml(yml_name, base_folder);
@@ -122,7 +123,7 @@ export async function setCondaEnv() {
     }
     const env_path = await getEnvPath(env_name);
     if (env_path) {
-        await vscode.workspace.getConfiguration('condasync').update('Environment Path', env_path, vscode.ConfigurationTarget.Workspace);
+        await vscode.workspace.getConfiguration('condasync').update('Environment Path', env_path);
         vscode.window.showInformationMessage(`CondaSync: Environment set to "${env_name}"`);
         watchEnv(env_path);
     } else {
