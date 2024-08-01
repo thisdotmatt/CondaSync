@@ -25,11 +25,12 @@ jobs:
       
       - run: npm ci
 
-      - name: Bump prerelease version
+      # Bump the version
+      - name: Bump version
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
-          npm version prerelease --preid=beta
+          npm version patch
           git push origin HEAD:main --follow-tags
 
       - name: Publish to Visual Studio Marketplace
