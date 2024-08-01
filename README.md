@@ -6,10 +6,14 @@ CondaSync is a simple VSCode Extension that integrates directly into your enviro
 
 ### Usage
 
+1. Open a Python project of your choice
+2. Enter the VSCode command line using <kbd>Control</kbd>+ <kbd>Shift</kbd> + <kbd>P</kbd>
+3. Type the `Set Conda Environment` command and enter the name of your conda environment (e.g. my_env)
+4. Stop customizing your IDE and start coding
 
 ### Contributing
 
-Pull requests, bug reports, and feature requests are welcome! Please search existing issues before creating a new one.
+Pull requests, bug reports, and feature requests are welcome! Please search existing [issues](https://github.com/thisdotmatt/CondaSync/issues) before creating a new one.
 
 To run from source:
 ```
