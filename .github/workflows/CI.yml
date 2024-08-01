@@ -29,8 +29,10 @@ jobs:
         uses: anothrNick/github-tag-action@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          WITH_V: false
+          WITH_V: true
           PRERELEASE: true
+          VERBOSE: true
+          GIT_API_TAGGING: true
       
       - name: Publish to Visual Studio Marketplace
         uses: HaaLeo/publish-vscode-extension@v1
