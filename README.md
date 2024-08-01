@@ -7,7 +7,7 @@ CondaSync is a simple Visual Studio Code Extension that integrates directly into
 
 ### Features
 - Track a conda environment through its entire life cycle with one command
-- Automatically update your `environment.yml` (or similar) file
+- Automatically update and clean up your `environment.yml` (or similar) file
 - Customize your dependency files in the settings
 
 ### Usage
