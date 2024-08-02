@@ -4,6 +4,7 @@ import * as fs from 'fs';
 import { executeCommand } from './utils';
 import { watchEnv } from './watcher';
 import { getSettings } from './config';
+import { commitChanges } from './git';
 
 async function findYml(yml_name: string, base_folder?: string): Promise<string | undefined> {
     const workspace_folders = vscode.workspace.workspaceFolders;
@@ -47,7 +48,7 @@ async function findYml(yml_name: string, base_folder?: string): Promise<string |
 }
 
 export async function updateEnv(updated_content: string) {
-    let settings = getSettings();
+    let settings = await getSettings();
     let base_folder = settings.yml_path;
     let yml_name = settings.yml_name;
     let verbose = settings.verbose;
@@ -59,10 +60,13 @@ export async function updateEnv(updated_content: string) {
     try {
         const current_content = await fs.promises.readFile(yml_path, 'utf8');
         if (current_content.trim() !== updated_content.trim()) {
+            await fs.promises.writeFile(yml_path, updated_content, 'utf8');
+            if (settings.git && settings.commit_message && settings.verbose != undefined) {
+                await commitChanges(yml_path, settings.commit_message, settings.verbose)
+            }
             if (verbose) {
                 vscode.window.showInformationMessage(`CondaSync: Updating ${yml_name}`);
             }
-            await fs.promises.writeFile(yml_path, updated_content, 'utf8');
         } else {
             if (verbose) {
                 vscode.window.showInformationMessage(`CondaSync: ${yml_name} is already up to date`);

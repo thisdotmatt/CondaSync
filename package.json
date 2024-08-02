@@ -43,6 +43,16 @@
             "type": "boolean",
             "default": false,
             "description": "Verbosity/frequency of messages"
+          },
+          "condasync.Git": {
+            "type": "boolean",
+            "default": false,
+            "description": "Commit dependency changes to local git repo"
+          },
+          "condasync.Message": {
+            "type": "string",
+            "default": "Updated dependency list",
+            "description": "Message for dependency commit"
           }
         }
       }

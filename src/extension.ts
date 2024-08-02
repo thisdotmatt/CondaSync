@@ -16,7 +16,7 @@ export async function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(disposable);
     context.subscriptions.push(config_listener);
 
-    if (settings.environment_path) {
+    if (settings.environment_path) { // on start up, check for updates
         await watchEnv(settings.environment_path);
         const new_env_content = await exportEnv(settings.environment_path);
         await updateEnv(new_env_content);
