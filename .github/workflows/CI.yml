@@ -8,10 +8,10 @@ on:
       - main
   workflow_dispatch:
     inputs:
-      version-type:
-        description: 'Version type to bump (major, minor, patch, premajor, preminor, prepatch, prerelease)'
+      version:
+        description: 'Version to bump to (e.g., v1.0.0)'
         required: false
-        default: 'patch'
+        default: ''
 
 jobs:
   deploy:
@@ -30,13 +30,16 @@ jobs:
           node-version: 20
       
       - run: npm ci
-      
+
       - name: Bump version
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
-          VERSION_TYPE="${{ github.event.inputs.version-type || 'patch' }}"
-          npm version $VERSION_TYPE
+          if [ -n "${{ github.event.inputs.version }}" ]; then
+            npm version ${{ github.event.inputs.version }}
+          else
+            npm version patch
+          fi
           git push origin HEAD:main --follow-tags
 
       - name: Publish to Visual Studio Marketplace
