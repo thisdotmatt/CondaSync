@@ -1,4 +1,4 @@
-# CondaSync (in Production)
+# CondaSync
 > Automatic Dependency Tracker
 
 Most package managers, such as npm and yarn, update your dependency files the moment you make any changes to your environment. Conda (surprisingly) **does not**. Existing solutions require you to manually update your dependency list, which is tedious and prone to errors. 
@@ -33,5 +33,9 @@ npm run compile
 You can now use VSCode's Debugger:
 Run > Start Debugging, or use the `Run Extension` button in the VSCode footer.
 
+## Changelog
+
+For more detailed changelog, see [`full_changelog.md`](.github/full_changelog.md).
+- **v0.1 (Aug 1, 2024):** Initial release
 
 
