@@ -6,17 +6,23 @@ on:
       - closed
     branches:
       - main
+  workflow_dispatch:
+    inputs:
+      version-type:
+        description: 'Version type to bump (major, minor, patch, premajor, preminor, prepatch, prerelease)'
+        required: false
+        default: 'patch'
 
 jobs:
   deploy:
-    if: github.event.pull_request.merged == true
+    if: github.event.pull_request.merged == true || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     permissions:
       contents: write
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.pull_request.merge_commit_sha }}
+          ref: ${{ github.event.pull_request.merge_commit_sha || 'main' }}
           fetch-depth: '0'
       
       - uses: actions/setup-node@v4
@@ -24,13 +30,13 @@ jobs:
           node-version: 20
       
       - run: npm ci
-
-      # Bump the version
+      
       - name: Bump version
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
-          npm version patch
+          VERSION_TYPE="${{ github.event.inputs.version-type || 'patch' }}"
+          npm version $VERSION_TYPE
           git push origin HEAD:main --follow-tags
 
       - name: Publish to Visual Studio Marketplace
