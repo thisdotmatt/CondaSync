@@ -3,7 +3,7 @@ import * as path from 'path';
 import * as fs from 'fs';
 import { executeCommand } from './utils';
 import { watchEnv } from './watcher';
-import {getEnvironmentPath, getYmlPath, getYmlName, isVerbose} from './config';
+import { getSettings } from './config';
 
 async function findYml(yml_name: string, base_folder?: string): Promise<string | undefined> {
     const workspace_folders = vscode.workspace.workspaceFolders;
@@ -13,7 +13,7 @@ async function findYml(yml_name: string, base_folder?: string): Promise<string |
         return undefined;
     }
 
-     // Check if the base folder exists in any of the workspace folders
+    // Check if the base folder exists in any of the workspace folders
     let invalid_paths = 0
     for (const folder of workspace_folders) {
         let folder_path = base_folder ? path.join(folder.uri.fsPath, base_folder) : folder.uri.fsPath;
@@ -47,10 +47,10 @@ async function findYml(yml_name: string, base_folder?: string): Promise<string |
 }
 
 export async function updateEnv(updated_content: string) {
-    const config = vscode.workspace.getConfiguration('condasync');
-    let base_folder = config.get<string>('YML File Path');
-    let yml_name = config.get<string>('YML File Name');
-    vscode.window.showErrorMessage(`Initiated Conda Update: ${base_folder}, ${yml_name}`);
+    let settings = getSettings();
+    let base_folder = settings.yml_path;
+    let yml_name = settings.yml_name;
+    let verbose = settings.verbose;
 
     if (!yml_name || !base_folder) return; //ensure the inputs are defined
     let yml_path = await findYml(yml_name, base_folder);
@@ -59,10 +59,14 @@ export async function updateEnv(updated_content: string) {
     try {
         const current_content = await fs.promises.readFile(yml_path, 'utf8');
         if (current_content.trim() !== updated_content.trim()) {
-            vscode.window.showInformationMessage(`CondaSync: Updating ${yml_name}`);
+            if (verbose) {
+                vscode.window.showInformationMessage(`CondaSync: Updating ${yml_name}`);
+            }
             await fs.promises.writeFile(yml_path, updated_content, 'utf8');
         } else {
-            vscode.window.showInformationMessage(`CondaSync: ${yml_name} is already up to date`);
+            if (verbose) {
+                vscode.window.showInformationMessage(`CondaSync: ${yml_name} is already up to date`);
+            }
         }
     } catch (error: any) {
         vscode.window.showErrorMessage(`CondaSync: Error updating ${yml_name}: ${error.message}`);
