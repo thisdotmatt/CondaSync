@@ -33,7 +33,7 @@ npm run compile
 You can now use VSCode's Debugger:
 Run > Start Debugging, or use the `Run Extension` button in the VSCode footer.
 
-## Changelog
+### Changelog
 
 For more detailed changelog, see [`full_changelog.md`](.github/full_changelog.md).
 - **v0.1 (Aug 1, 2024):** Initial release
