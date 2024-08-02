@@ -1,8 +1,7 @@
 import * as vscode from 'vscode';
 import { executeCommand } from './utils';
 
-export async function checkGit(directory : string): Promise<boolean> {
-    vscode.window.showInformationMessage(`Current Directory: ${directory}`);
+export async function checkGit(directory: string): Promise<boolean> {
     try {
         const { stdout, stderr } = await executeCommand(`cd ${directory} && git rev-parse --is-inside-work-tree`);
         if (stderr) {
@@ -25,17 +24,16 @@ export async function commitChanges(env_path: string, commit_message: string, ve
         vscode.window.showErrorMessage('CondaSync: Workspace folder was not found');
         return undefined;
     }
-    let directory = workspace_folders[0].uri.fsPath;
-
+    let directory = workspace_folders[0].uri.fsPath; // TODO: create utility for getting workspace folder(s)
     try {
         let git_status = await checkGit(directory)
         if (git_status) {
-            let{ stdout, stderr} = await executeCommand(`cd ${directory} && git add ${env_path}`);
+            let { stdout, stderr } = await executeCommand(`cd ${directory} && git add ${env_path}`);
             if (stderr) {
                 vscode.window.showErrorMessage(`CondaSync: Error adding ${env_path} to staging area: ${stderr}`);
                 throw new Error(stderr);
             }
-            let { stdout: sout, stderr: commiterr} = await executeCommand(`cd ${directory} && git commit -m "${commit_message}"`);
+            let { stdout: sout, stderr: commiterr } = await executeCommand(`cd ${directory} && git commit -m "${commit_message}"`);
             if (commiterr) {
                 vscode.window.showErrorMessage(`CondaSync: Error committing changes: ${commiterr}`);
                 throw new Error(commiterr);
