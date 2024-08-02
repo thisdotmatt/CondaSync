@@ -8,15 +8,16 @@ CondaSync is a simple Visual Studio Code Extension that integrates directly into
 ### Features
 - Track a conda environment through its entire life cycle with one command
 - Automatically update and clean up your `environment.yml` (or similar) file
-- Customize your dependency files in the settings
+- Commit dependency changes to your local repository with each update
+- Fully customize your extension to serve your needs
 
 ### Usage
 Ensure you have the latest versions of [VSCode](https://code.visualstudio.com/) and [conda](https://docs.conda.io/en/latest/) installed, and have the Extension enabled in the `Extensions` sidebar.
 
-1. Open a Python project of your choice
-2. Enter the VSCode command line using <kbd>Control</kbd>+ <kbd>Shift</kbd> + <kbd>P</kbd>
-3. Use the `Set Conda Environment` command and enter the name of your conda environment (e.g. my_env)
-4. Stop customizing your IDE and start coding
+- Open a Python project of your choice
+- Enter the VSCode command line using <kbd>Control</kbd>+ <kbd>Shift</kbd> + <kbd>P</kbd>
+- Use the `Set Conda Environment` command and enter the name of your conda environment (e.g. my_env)
+- Use the `Preferences: Open Workspace Settings` command, and search for "CondaSync" to find a full list of settings
 
 ### Contributing
 
