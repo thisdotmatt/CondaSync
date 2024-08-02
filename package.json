@@ -3,6 +3,7 @@
   "displayName": "CondaSync",
   "publisher": "thisdotmatt",
   "description": "Utility for automatically updating conda dependencies",
+  "icon": "media/condasync.png",
   "version": "0.1.0",
   "engines": {
     "vscode": "^1.91.0"
