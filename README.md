@@ -36,6 +36,7 @@ Run > Start Debugging, or use the `Run Extension` button in the VSCode footer.
 ### Changelog
 
 For more detailed changelog, see [`full_changelog.md`](.github/full_changelog.md).
+- **v0.2 (Aug 2, 2024):** Added Git Features
 - **v0.1 (Aug 1, 2024):** Initial release
 
 
