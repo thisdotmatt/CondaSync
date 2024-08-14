@@ -3,7 +3,9 @@ import * as vscode from 'vscode';
 import * as path from 'path';
 import { exportEnv, updateEnv } from './conda';
 
+const DEBOUNCE_DELAY = 1000;
 const POLLING_INTERVAL = 300; //in ms
+
 const options = {
     persistent: true,
     ignoreInitial: true,
@@ -14,7 +16,7 @@ const options = {
     ignored: '^(?!.*(history|__pycache__)).*$',
 };
 const watcher = chokidar.watch([], options);
-export async function watchEnv(DEBOUNCE_DELAY: number, env_path: string) {
+export async function watchEnv(env_path: string) {
     // Upon watching a new conda environment, check for initial updates
     const new_env_content = await exportEnv(env_path);
     await updateEnv(new_env_content);

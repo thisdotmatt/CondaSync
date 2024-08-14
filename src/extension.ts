@@ -9,7 +9,6 @@ import { getWatcher, watchEnv } from './watcher';
 import { configListener, getSettings } from './config';
 
 export async function activate(context: vscode.ExtensionContext) {
-    const DEBOUNCE_DELAY = 1000;
     const disposable = vscode.commands.registerCommand('setCondaEnv', setCondaEnv);
     let config_listener = configListener; // Register the listener for configuration changes
     let settings = getSettings()
@@ -18,7 +17,7 @@ export async function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(config_listener);
 
     if (settings.environment_path) { // on start up, check for updates
-        await watchEnv(DEBOUNCE_DELAY, settings.environment_path);
+        await watchEnv(settings.environment_path);
         const new_env_content = await exportEnv(settings.environment_path);
         await updateEnv(new_env_content);
         vscode.window.showInformationMessage('CondaSync: started successfully');
