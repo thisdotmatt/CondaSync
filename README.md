@@ -1,5 +1,4 @@
-# CondaSync ![Static Badge](https://img.shields.io/badge/status-beta-blue) ![Visual Studio Marketplace Downloads](https://img.shields.io/visual-studio-marketplace/d/thisdotmatt.condasync)
-https://img.shields.io/badge/downloads-168-green
+# CondaSync ![Static Badge](https://img.shields.io/badge/status-beta-blue) ![Visual Studio Marketplace Downloads](https://img.shields.io/badge/downloads-168-green)
 > Automatic Dependency Tracker
 
 Most package managers, such as npm and yarn, update your dependency files the moment you make any changes to your environment. Conda (surprisingly) **does not**. Existing solutions require you to manually update your dependency list, which is tedious and prone to errors. 
