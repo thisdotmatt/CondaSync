@@ -5,6 +5,8 @@ Most package managers, such as npm and yarn, update your dependency files the mo
 <br><br>
 CondaSync is a simple Visual Studio Code Extension that integrates directly into your environment and does the boring work for you.
 
+### 🎉 **Thank You for 3K Downloads!** 🎉
+
 ### Features
 - Track a conda environment through its entire life cycle with one command
 - Automatically update and clean up your `environment.yml` (or similar) file
